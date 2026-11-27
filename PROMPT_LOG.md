@@ -6,7 +6,7 @@ All AI prompts used by MyRehat are centralized in source and recorded here so ch
 
 - Entry point: `apps/server/src/webhooks/waha.ts`
 - Also used by the `/ai` chat route: `apps/server/src/index.ts`
-- Model: `google/gemini-2.5-flash`
+- Model: `google/gemini-2.5-flash-lite`
 - System prompt: `apps/server/src/ai/concierge.ts` (`CONCIERGE_SYSTEM_PROMPT`)
 - User prompt: the inbound WhatsApp `payload.body`, passed through unchanged.
 

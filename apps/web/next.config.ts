@@ -5,6 +5,11 @@ const withVarlock = varlockNextConfigPlugin({ freezeIntoBundle: false });
 
 import type { NextConfig } from "next";
 
+const serverUrl =
+	process.env.SERVER_URL ??
+	process.env.NEXT_PUBLIC_SERVER_URL ??
+	"http://localhost:3000";
+
 const nextConfig: NextConfig = {
 	typedRoutes: true,
 	reactCompiler: true,
@@ -12,14 +17,14 @@ const nextConfig: NextConfig = {
 	transpilePackages: ["shiki"],
 	async rewrites() {
 		return [
-			{ source: "/rpc/:path*", destination: "http://server:3000/rpc/:path*" },
+			{ source: "/rpc/:path*", destination: `${serverUrl}/rpc/:path*` },
 			{
 				source: "/api/auth/:path*",
-				destination: "http://server:3000/api/auth/:path*",
+				destination: `${serverUrl}/api/auth/:path*`,
 			},
 			{
 				source: "/api/webhooks/:path*",
-				destination: "http://server:3000/api/webhooks/:path*",
+				destination: `${serverUrl}/api/webhooks/:path*`,
 			},
 		];
 	},

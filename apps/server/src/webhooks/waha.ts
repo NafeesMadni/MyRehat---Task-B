@@ -30,7 +30,7 @@ export const wahaWebhook = new Elysia().post(
 
 		try {
 			const { text } = await generateText({
-				model: google("gemini-2.5-flash"),
+				model: google("gemini-2.5-flash-lite"),
 				system: CONCIERGE_SYSTEM_PROMPT,
 				prompt: body,
 			});
