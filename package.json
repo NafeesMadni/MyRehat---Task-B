@@ -23,9 +23,12 @@
     "env:generate": "varlock codegen --path ./apps/web/ && varlock codegen --path ./apps/server/ && varlock codegen --path ./packages/db/",
     "postinstall": "varlock codegen --path ./apps/web/ && varlock codegen --path ./apps/server/ && varlock codegen --path ./packages/db/",
     "auth:generate": "cd apps/server && pnpm run auth:generate",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "test": "bun test"
   },
   "dependencies": {
+    "ai": "catalog:",
+    "ai-sdk-provider-opencode-sdk": "^5.0.1",
     "zod": "catalog:"
   },
   "devDependencies": {
