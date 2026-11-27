@@ -24,7 +24,8 @@
     "postinstall": "varlock codegen --path ./apps/web/ && varlock codegen --path ./apps/server/ && varlock codegen --path ./packages/db/",
     "auth:generate": "cd apps/server && pnpm run auth:generate",
     "check": "biome check --write .",
-    "test": "bun test"
+    "test": "vitest run",
+    "test:polish": "bun test Scripts/polish.test.ts"
   },
   "dependencies": {
     "ai": "catalog:",
@@ -37,7 +38,8 @@
     "@types/bun": "catalog:",
     "turbo": "^2.11.11",
     "typescript": "catalog:",
-    "varlock": "catalog:"
+    "varlock": "catalog:",
+    "vitest": "^5.1.2"
   },
   "packageManager": "pnpm@12.23.0"
 }
