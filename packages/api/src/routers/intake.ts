@@ -2,13 +2,13 @@ import { intake } from "@myrehat-task-b/db/schema/intake";
 import { z } from "zod";
 
 import { protectedProcedure } from "../index";
-import { INTAKE_TYPES } from "../intake-options";
+import { intakeTypeSchema } from "../intake-schema";
 
 const createIntakeInput = z.object({
 	title: z.string().trim().min(1, "Title is required").max(200),
 	price: z.coerce.number().positive("Price must be greater than 0"),
 	location: z.string().trim().min(1, "Location is required").max(200),
-	type: z.enum(INTAKE_TYPES),
+	type: intakeTypeSchema,
 	contactWa: z.string().trim().min(1, "Contact WA is required").max(50),
 });
 

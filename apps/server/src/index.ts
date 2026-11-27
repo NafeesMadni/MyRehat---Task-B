@@ -90,7 +90,7 @@ new Elysia()
 		const body = (await context.request.json()) as { messages?: UIMessage[] };
 		const uiMessages = body.messages || [];
 		const model = wrapLanguageModel({
-			model: google("gemini-2.5-flash"),
+			model: google("gemini-2.5-flash-lite"),
 			middleware: devToolsMiddleware(),
 		});
 		const result = streamText({

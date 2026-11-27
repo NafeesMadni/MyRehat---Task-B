@@ -1,17 +1,12 @@
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 import { Elysia } from "elysia";
-import { z } from "zod";
 
 import { CONCIERGE_SYSTEM_PROMPT } from "../ai/concierge";
+import { formatWahaReply } from "../ai/reply";
+import { wahaWebhookSchema } from "./waha-schema";
 
-const wahaWebhookSchema = z.object({
-	event: z.string().min(1),
-	payload: z.object({
-		from: z.string().min(1),
-		body: z.string().min(1),
-	}),
-});
+export { wahaWebhookSchema } from "./waha-schema";
 
 export const wahaWebhook = new Elysia().post(
 	"/api/webhooks/waha",
@@ -35,12 +30,12 @@ export const wahaWebhook = new Elysia().post(
 
 		try {
 			const { text } = await generateText({
-				model: google("gemini-2.5-flash"),
+				model: google("gemini-2.5-flash-lite"),
 				system: CONCIERGE_SYSTEM_PROMPT,
 				prompt: body,
 			});
 
-			return { to: from, reply: text };
+			return formatWahaReply(from, text);
 		} catch (error) {
 			console.error("WAHA concierge failed", error);
 			return status(502, { error: "Failed to generate reply" });
