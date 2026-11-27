@@ -15,8 +15,8 @@ export default function Header() {
 
 	return (
 		<div>
-			<div className="flex flex-row items-center justify-between px-2 py-1">
-				<nav className="flex gap-4 text-lg">
+			<div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2">
+				<nav className="flex flex-wrap items-center gap-x-4 gap-y-1 text-base sm:text-lg">
 					{links.map(({ to, label }) => {
 						return (
 							<Link key={to} href={to}>
