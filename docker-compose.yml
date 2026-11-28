@@ -10,13 +10,13 @@ services:
         - server_env
       args:
         NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://server:3000}
-        SERVER_URL: http://server:3000 
+        SERVER_URL: ${SERVER_URL:-http://server:3000}
     init: true
     env_file:
       - path: apps/web/.env
         required: false
     environment:
-      SERVER_URL: http://server:3000
+      SERVER_URL: ${SERVER_URL:-http://server:3000}
       NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://server:3000}
       OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
       OPENROUTER_MODEL: ${OPENROUTER_MODEL:-google/gemini-2.5-flash}
